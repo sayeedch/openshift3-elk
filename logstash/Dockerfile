@@ -1,6 +1,6 @@
 FROM openshift/base-centos7
 
-MAINTAINER Lorenz Bischof <bischof@puzzle.ch>
+MAINTAINER sayeedch
 
 ENV LOGSTASH_VERSION=5.5.2 \
     ELASTICSEARCH_SERVICE_HOST=elasticsearch
@@ -14,7 +14,8 @@ RUN \
   rpm --rebuilddb && yum clean all && \
   yum install -y tar java-1.8.0-openjdk openssl && \
   cd /opt/app-root && \
-  curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${LOGSTASH_VERSION}.tar.gz && \
+  ##curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${LOGSTASH_VERSION}.tar.gz && \
+  curl -O https://artifacts.elastic.co/downloads/logstash/logstash-${LOGSTASH_VERSION}.tar.gz && \
   tar zxvf logstash-${LOGSTASH_VERSION}.tar.gz -C /opt/app-root --strip-components=1 && \
   rm -f logstash-${LOGSTASH_VERSION}.tar.gz && \
   yum clean all -y
